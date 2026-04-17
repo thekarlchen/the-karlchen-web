@@ -40,10 +40,10 @@ const RoomsSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="font-heading font-normal text-4xl md:text-5xl text-foreground mb-4">
-            Our Rooms
+            {t(translations.rooms.title, lang)}
           </h2>
           <p className="font-heading italic text-lg md:text-xl text-muted-foreground font-light tracking-wide">
-            Browse our elegant rooms & suites.
+            {t(translations.rooms.subtitle, lang)}
           </p>
         </div>
 

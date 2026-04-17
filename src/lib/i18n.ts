@@ -3,7 +3,7 @@ export type Lang = "de" | "en";
 export const translations = {
   nav: {
     home: { de: "Home", en: "Home" },
-    stay: { de: "Aufenthalt", en: "Stay" },
+    stay: { de: "Zimmer", en: "Stay" }, // Upgraded to 'Zimmer'
     contact: { de: "Kontakt", en: "Contact" },
   },
   hero: {
@@ -12,14 +12,12 @@ export const translations = {
     tagline: { de: "Wohnen. Leben. Entspannen.", en: "Stay. Live. Relax." },
   },
   rooms: {
-    title: { de: "Unsere Wohnungen", en: "Our Apartments" },
+    title: { de: "Unsere Zimmer", en: "Our Rooms" }, // Upgraded from Apartments
     subtitle: {
-      de: "Wählen Sie die perfekte Unterkunft für Ihren Aufenthalt.",
-      en: "Choose the perfect accommodation for your stay.",
+      de: "Entdecken Sie unsere eleganten Zimmer & Suiten.",
+      en: "Browse our elegant rooms & suites.",
     },
-    oneBedroom: { de: "1-Zimmer Wohnung", en: "1 Bedroom Apartment" },
-    twoBedroom: { de: "2-Zimmer Wohnung", en: "2 Bedroom Apartment" },
-    threeBedroom: { de: "3-Zimmer Wohnung", en: "3 Bedroom Apartment" },
+    // Removed the 1/2/3 bedroom keys since we handle specific room names in the component now
     available: { de: "verfügbar", en: "available" },
     perNight: { de: "pro Nacht", en: "per night" },
     from: { de: "Ab", en: "From" },
@@ -29,27 +27,27 @@ export const translations = {
     checkAvailability: { de: "Verfügbarkeit prüfen", en: "Check Availability" },
   },
   booking: {
-    title: { de: "Verfügbarkeit prüfen", en: "Check Availability" },
+    title: { de: "Verfügbarkeit prüfen & Buchen", en: "Check Availability & Book" },
     subtitle: {
-      de: "Wählen Sie Ihren Wunschzeitraum und Ihre Unterkunft.",
-      en: "Select your desired dates and accommodation.",
+      de: "Wählen Sie Ihren Wunschzeitraum und prüfen Sie die Verfügbarkeit.",
+      en: "Select your dates and check availability.",
     },
     checkIn: { de: "Anreise", en: "Check-in" },
     checkOut: { de: "Abreise", en: "Check-out" },
     selectDate: { de: "Datum wählen", en: "Select date" },
-    apartment: { de: "Wohnung", en: "Apartment" },
-    selectApartment: { de: "Wohnung wählen", en: "Select apartment" },
+    room: { de: "Zimmer", en: "Room" }, // Replaced 'apartment'
+    selectRoom: { de: "Zimmer wählen", en: "Select room" }, // Replaced 'selectApartment'
     guestCount: { de: "Anzahl Gäste", en: "Number of Guests" },
     guest: { de: "Gast", en: "Guest" },
     guestPlural: { de: "Gäste", en: "Guests" },
     bookNow: { de: "Jetzt buchen", en: "Book Now" },
-    inquire: { de: "Anfrage senden", en: "Send Inquiry" },
+    inquire: { de: "Jetzt Anfragen", en: "Inquire" },
   },
   gallery: {
     title: { de: "Galerie", en: "Gallery" },
     subtitle: {
-      de: "Eindrücke aus unseren Ferienwohnungen",
-      en: "Impressions from our holiday apartments",
+      de: "Eindrücke aus unseren Zimmern & Suiten", // Upgraded from Ferienwohnungen
+      en: "Impressions from our rooms & suites",
     },
   },
   contact: {
@@ -58,7 +56,7 @@ export const translations = {
       de: "Wir freuen uns auf Ihre Anfrage",
       en: "We look forward to your inquiry",
     },
-    property: { de: "Ferienwohnung", en: "Holiday Apartment" },
+    property: { de: "Boutique Hotel", en: "Boutique Hotel" }, // Upgraded from Ferienwohnung
     owner: { de: "Inhaberin", en: "Owner" },
     phone: { de: "Telefon", en: "Phone" },
   },
