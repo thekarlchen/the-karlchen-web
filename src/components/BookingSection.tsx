@@ -13,14 +13,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-// THE CORRECTED 5-ROOM ARRAY
-// Mapped perfectly to your original guest capacities
+// THE NEW 5-ROOM ARRAY
 const rooms = [
-  { id: "deluxe-201", label: { de: "Deluxe Zimmer 201", en: "Deluxe Room 201" }, maxGuests: 2 },
-  { id: "deluxe-202", label: { de: "Deluxe Zimmer 202", en: "Deluxe Room 202" }, maxGuests: 2 },
-  { id: "junior-301", label: { de: "Junior Suite 301", en: "Junior Suite 301" }, maxGuests: 4 },
-  { id: "junior-302", label: { de: "Junior Suite 302", en: "Junior Suite 302" }, maxGuests: 4 },
-  { id: "executive-401", label: { de: "Executive Suite 401", en: "Executive Suite 401" }, maxGuests: 6 },
+  { id: "karlchen-suite", label: { de: "Karlchen Suite (110 m²)", en: "Karlchen Suite (110 m²)" }, maxGuests: 6 },
+  { id: "paulchen-suite", label: { de: "Paulchen Suite", en: "Paulchen Suite" }, maxGuests: 2 },
+  { id: "karlchen-apt-1", label: { de: "Karlchen Apartment I", en: "Karlchen Apartment I" }, maxGuests: 2 },
+  { id: "karlchen-apt-2", label: { de: "Karlchen Apartment II", en: "Karlchen Apartment II" }, maxGuests: 4 },
+  { id: "karlchen-apt-3", label: { de: "Karlchen Apartment III", en: "Karlchen Apartment III" }, maxGuests: 4 },
 ];
 
 const BookingSection = () => {
@@ -33,10 +32,7 @@ const BookingSection = () => {
 
   const locale = lang === "de" ? de : enUS;
   
-  // Find the selected room based on the ID
   const selectedRoom = rooms.find((r) => r.id === selectedRoomId);
-  // Default to 6 max guests if nothing is selected yet, 
-  // but clamps immediately once a room is picked
   const maxGuests = selectedRoom?.maxGuests ?? 6;
 
   const handleInquire = () => {
@@ -49,7 +45,8 @@ const BookingSection = () => {
       ? `Hallo,%0A%0AIch möchte gerne folgendes Zimmer anfragen:%0A%0AZimmer: ${room?.label.de ?? ""}%0AZeitraum: ${dateRange}%0AGäste: ${guests}%0A%0AMit freundlichen Grüßen`
       : `Hello,%0A%0AI would like to inquire about the following room:%0A%0ARoom: ${room?.label.en ?? ""}%0APeriod: ${dateRange}%0AGuests: ${guests}%0A%0ABest regards`;
 
-    window.location.href = `mailto:info@fewolieblingsplatz.de?subject=${subject}&body=${body}`;
+    // UPDATED EMAIL ADDRESS HERE
+    window.location.href = `mailto:thekarlchenn@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -145,7 +142,7 @@ const BookingSection = () => {
               {/* Room selector */}
               <div>
                 <label className="font-body text-xs tracking-[0.1em] uppercase text-muted-foreground/80 mb-3 block">
-                  {lang === "de" ? "Zimmer" : "Room"}
+                  {t(translations.booking.room, lang) || (lang === "de" ? "Zimmer" : "Room")}
                 </label>
                 <Popover open={roomDropdownOpen} onOpenChange={setRoomDropdownOpen}>
                   <PopoverTrigger asChild>
@@ -170,7 +167,6 @@ const BookingSection = () => {
                           onClick={() => {
                             setSelectedRoomId(room.id);
                             setRoomDropdownOpen(false);
-                            // If they had 6 guests selected and switch to a Deluxe, it automatically drops to 2!
                             if (guests > room.maxGuests) setGuests(room.maxGuests);
                           }}
                           className={cn(
@@ -179,7 +175,6 @@ const BookingSection = () => {
                           )}
                         >
                           <span className="block">{room.label[lang]}</span>
-                          {/* Added a tiny visual helper to show max guests in the dropdown list */}
                           <span className="text-[0.65rem] text-muted-foreground/70 tracking-widest uppercase mt-0.5 block">
                             Max {room.maxGuests} {t(translations.booking.guestPlural, lang)}
                           </span>
@@ -209,7 +204,6 @@ const BookingSection = () => {
                   <button
                     onClick={() => setGuests(Math.min(maxGuests, guests + 1))}
                     className="p-1.5 text-muted-foreground hover:text-foreground transition-colors ml-1"
-                    // Optionally fade out the Plus button when they hit the room limit
                     disabled={guests >= maxGuests}
                     style={{ opacity: guests >= maxGuests ? 0.3 : 1 }}
                   >
